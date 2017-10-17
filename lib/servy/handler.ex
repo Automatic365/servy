@@ -13,6 +13,10 @@ defmodule Servy.Handler do
     %{conv | path: "/wildthings" }
   end
 
+  def rewrite(%{path: "/bears?id=" <> id} = conv) do
+    %{conv | path: "/bears/#{id}" }
+  end
+
   def rewrite(conv), do: conv
 
   def log(conv), do: IO.inspect conv
