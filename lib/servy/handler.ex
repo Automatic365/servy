@@ -5,9 +5,16 @@ defmodule Servy.Handler do
     |> rewrite
     |> log
     |> route
+    |> emojify
     |> track
     |> format_response
   end
+
+  def emojify(%{status: 200, resp_body: response_body} = conv) do
+    %{conv | resp_body: "EMOJI #{response_body} EMOJI" }
+  end
+
+  def emojify(conv), do: conv
 
   def rewrite(%{path: "/wildlife"} = conv) do
     %{conv | path: "/wildthings" }
