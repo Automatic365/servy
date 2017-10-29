@@ -4,7 +4,10 @@ defmodule Servy.Handler do
   def handle(request) do
     request
     |> parse
+<<<<<<< 38e924eedc26d198f6789418f98db3826caf205e
     |> rewrite
+=======
+>>>>>>> add function clauses to handle routing
     |> log
     |> route
     |> emojify
@@ -12,6 +15,7 @@ defmodule Servy.Handler do
     |> format_response
   end
 
+<<<<<<< 38e924eedc26d198f6789418f98db3826caf205e
   def emojify(%{status: 200, resp_body: response_body} = conv) do
     %{conv | resp_body: "EMOJI #{response_body} EMOJI" }
   end
@@ -28,6 +32,8 @@ defmodule Servy.Handler do
 
   def rewrite(conv), do: conv
 
+=======
+>>>>>>> add function clauses to handle routing
   def log(conv), do: IO.inspect conv
 
   def parse(request) do
@@ -67,6 +73,7 @@ defmodule Servy.Handler do
 
   def route(conv) do
     route(conv, conv.method, conv.path)
+<<<<<<< 38e924eedc26d198f6789418f98db3826caf205e
   end
 
   def track(%{status: 404, path: path} = conv) do
@@ -76,6 +83,18 @@ defmodule Servy.Handler do
 
   def track(conv), do: conv
 
+=======
+  end
+
+  def route(conv, "GET", "/wildthings") do
+    %{ conv | resp_body: "Bears, Lions, Tigers" }
+  end
+
+  def route(conv, "GET", "/bears") do
+    %{ conv | resp_body: "Smokey, Teddy, Grizzly" }
+  end
+
+>>>>>>> add function clauses to handle routing
   def format_response(conv) do
     """
     HTTP/1.1 #{conv.status} #{status_reason(conv.status)}
