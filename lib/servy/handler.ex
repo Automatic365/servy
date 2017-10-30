@@ -185,3 +185,15 @@ Accept: */*
 response = Servy.Handler.handle(request)
 
 IO.puts response
+
+request = """
+GET /about HTTP/1.1
+Host: example.com
+User-Agent: ExampleBrowser/1.0
+Accept: */*
+
+"""
+
+response = Servy.Handler.handle(request)
+
+IO.puts response
