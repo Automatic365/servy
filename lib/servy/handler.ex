@@ -66,7 +66,7 @@ defmodule Servy.Handler do
   end
 
   def handle_file({:error, reason }, conv ) do
-    %{ conv | status: 404, resp_body: reason}
+    %{ conv | status: 404, resp_body: "File error #{reason}"}
   end
 
   def route(%{ path: path } = conv) do
