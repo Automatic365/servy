@@ -198,7 +198,7 @@ response = Servy.Handler.handle(request)
 IO.puts response
 
 request = """
-GET /contact HTTP/1.1
+GET /pages/contact HTTP/1.1
 Host: example.com
 User-Agent: ExampleBrowser/1.0
 Accept: */*
@@ -210,7 +210,7 @@ response = Servy.Handler.handle(request)
 IO.puts response
 
 request = """
-GET /faq HTTP/1.1
+GET /pages/faq HTTP/1.1
 Host: example.com
 User-Agent: ExampleBrowser/1.0
 Accept: */*
@@ -222,7 +222,7 @@ response = Servy.Handler.handle(request)
 IO.puts response
 
 request = """
-GET /any-other-page HTTP/1.1
+GET /pages/any-other-page HTTP/1.1
 Host: example.com
 User-Agent: ExampleBrowser/1.0
 Accept: */*
