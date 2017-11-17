@@ -1,11 +1,8 @@
 defmodule Servy.Handler do
 
-<<<<<<< HEAD
 alias Servy.Conv
 alias Servy.BearController
-=======
   @moduledoc "Handles HTTP requests."
->>>>>>> bb0327bcf5a9f8debcccb0de238800134a1d14d9
 
   alias Servy.Conv
   alias Servy.BearController
@@ -39,14 +36,11 @@ alias Servy.BearController
     BearController.show(conv, params)
   end
 
-<<<<<<< HEAD
   def route(%Conv{method: "DELETE", path: "/bears/" <> id} = conv) do
     params = Map.put(conv.params, "id", id)
     BearController.delete(conv, params)
   end
 
-=======
->>>>>>> bb0327bcf5a9f8debcccb0de238800134a1d14d9
   def route(%Conv{method: "POST", path: "/bears"} = conv) do
     BearController.create(conv, conv.params)
   end
@@ -151,23 +145,7 @@ response = Servy.Handler.handle(request)
 IO.puts response
 
 request = """
-<<<<<<< HEAD
 DELETE /bears/1 HTTP/1.1
-=======
-GET /bears HTTP/1.1
-Host: example.com
-User-Agent: ExampleBrowser/1.0
-Accept: */*
-
-"""
-
-response = Servy.Handler.handle(request)
-
-IO.puts response
-
-request = """
-GET /bears/1 HTTP/1.1
->>>>>>> bb0327bcf5a9f8debcccb0de238800134a1d14d9
 Host: example.com
 User-Agent: ExampleBrowser/1.0
 Accept: */*

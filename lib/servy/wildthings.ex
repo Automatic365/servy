@@ -17,16 +17,11 @@ defmodule Servy.Wildthings do
   end
 
   def get_bear(id) when is_integer(id) do
-<<<<<<< HEAD
-    Enum.find(list_bears(), fn b -> b.id == id end)
-=======
     Enum.find(list_bears(), fn (b) -> b.id == id end)
->>>>>>> bb0327bcf5a9f8debcccb0de238800134a1d14d9
   end
 
   def get_bear(id) when is_binary(id) do
     id
-<<<<<<< HEAD
     |> String.to_integer()
     |> get_bear
   end
@@ -42,10 +37,3 @@ defmodule Servy.Wildthings do
   end
 
 end
-=======
-    |> String.to_integer
-    |> get_bear
-  end
-
-end
->>>>>>> bb0327bcf5a9f8debcccb0de238800134a1d14d9
