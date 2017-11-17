@@ -1,6 +1,7 @@
 defmodule Servy.Handler do
 
 alias Servy.Conv
+alias Servy.BearController
 
   import Servy.Plugins, only: [track: 1, rewrite_path: 1, log: 1]
   import Servy.Parser, only: [parse: 1]
@@ -29,8 +30,13 @@ alias Servy.Conv
     %{ conv | status: 201, resp_body: "Created a #{conv.params["type"]} bear named #{conv.params["name"]}!" }
   end
 
-  def route(%Conv{ method: "GET", path: "/bears/" <> id } = conv) do
-    %{ conv | status: 200, resp_body: "Bear #{id}" }
+  def route(%Conv{method: "DELETE", path: "/bears/" <> id} = conv) do
+    params = Map.put(conv.params, "id", id)
+    BearController.delete(conv, params)
+  end
+
+  def route(%Conv{method: "POST", path: "/bears"} = conv) do
+    BearController.create(conv, conv.params)
   end
 
   def route(%Conv{method: "GET", path: "/pages/" <> file} = conv) do
@@ -194,26 +200,11 @@ response = Servy.Handler.handle(request)
 IO.puts response
 
 request = """
-GET /pages/any-other-page HTTP/1.1
+DELETE /bears/1 HTTP/1.1
 Host: example.com
 User-Agent: ExampleBrowser/1.0
 Accept: */*
 
-"""
-
-response = Servy.Handler.handle(request)
-
-IO.puts response
-
-request = """
-POST /bears HTTP/1.1
-Host: example.com
-User-Agent: ExampleBrowser/1.0
-Accept: */*
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 21
-
-name=Baloo&type=Brown
 """
 
 response = Servy.Handler.handle(request)
